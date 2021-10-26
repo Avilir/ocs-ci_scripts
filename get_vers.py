@@ -49,6 +49,9 @@ def driver_versions(log):
 
     header_write(log, "OCS versions", tabs=1)
     command_output(log, 'get csv')
+    log.write("\t\tODF (OCS) build :")
+    #command_output(log, "get csv -o json <CSV> | jq '.metadata.labels[\"full_version\"]'")
+    command_output(log, 'get csv -o yaml | grep full_version | tail -n 1')
 
     header_write(log, "Rook versions", tabs=1)
     pod = get_pod_name("tools")[0].replace("\u200b", '*')
